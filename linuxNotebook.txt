@@ -1,0 +1,179 @@
+linux perfetional course that i bout:
+command ->
+w : to see the users that loged in on the device ("tty" means terminal type)
+    {
+        tty(number):means that user using terminal localy,
+        pts(number):means that user using terminal from ssh remotely
+    }
+;
+ssh "userName"@"ipAddress" : to connect to linux terminal from another place remotely
+    {
+        exit:to close the connection
+    }
+;
+sudo : super user do (adminester premission);
+su - "userName" : to change the current user(needs sudo premission);
+passwd : to change user password;
+passwd "userName" : to change user password (you have to be root user);
+hostname "serverName" : to change system hostname(needs sudo premission);
+ls -l *.'fileSuffix': to filter the files that have specefic file suffix (for example ls -l *.txt is show all text files)
+ls -l *.???(more) : filters the files that have specefic file suffix char count according to number of (?) 
+touch 'fileName' : to make new file;
+ls -l ['from'-'to'](other options):filter the files;
+ls -l {(different options)}:filter the files using options in (and) way not (or);
+'variebelName'='value' or let "'variebelName'='value'": to define new local vaiebles in terminal
+    {
+        local variebels are only exist till computer shutsdown(saved in ram),
+    }
+echo $'variebelName' : print the variebelName;
+set ${'variebelName':='value'} : set unchange able value(final variebels);
+export $'variebelName' : make an environment variebels
+    {
+    environment vaiebles: the variebels that will not change even after restart the computer,
+
+    }
+read (command) 'variebelName' : to take input from the user and save that in variebel
+    {
+        read -p 'the text that will be shown to user' 'variebelName',
+        read -n (number of chars that is acceptable) 'variebelName',
+        read -t (time to wait for user in seconds) 'variebelName'
+    }    
+**// important <->
+('')single quats will return the absolute string and you can not use $variebelName in it unlike doublequats("")
+<-> //**
+alias commandName="command" : to creat short cut for large commands
+unalias commandName : remove the shortcut
+**// important <->
+this way to define alias is temporarly and alias's will remove after restart the computer to keep them permenently you should edit the ~/.bashrc file 
+but it will define just for the current user not others
+to define alias globaly for all user you should edit /etc/bash.bashrc
+<-> //**
+cat "fileName":it will shows the file content
+    {
+       cat -n "fileName": shows line numbers
+    }
+;
+nano : is simple text editor like notepad;
+/etc : is a directory that keeps configs;
+man "commandName": shows information about what is this command and how does it works;
+    {
+        "/" : you can search in pageviewed,
+        "n" : next word found in search,
+        man man : xd
+        man -S (section number) "name" : it will shows the info in different sections (like man passwd and man -S 5 passwd first one will open the command info the second one will open the file info in directory)
+        man -a "name" : it will shows info in all sections,
+        man -w "commandName":it will shows the directory of the command
+        help , apropos , info ,"commandName --help": these commands are like man but we will use these when man wont works fine,
+    }
+
+stat "fileName" : shows timestamps : infos about the file 
+    {
+        Atime (access time):last time that file readed,
+        Mtime (modified time): last time that file changed,
+        Ctime (change time):last time that file content or attributes(premissions or etc) changed,
+        -> "you can change these times using touch command"
+    }   
+mkdir "directoryName": short name of make directory and it will make directory  
+    {
+        mkdir -p "outSideDirectory"/"insideDirectory"/"lastDirectory":it will makes directory as the path is,
+        mkdir -v (otherCommands) "fileNames":it will shows info about what is going on
+    }
+cp : to copy the files and directories
+    {
+        cp "fileNames" "destinationDirectory" : it will cpies file/s in to the destinationDirectory;
+        cp -r "directoryName" "destinationDirectory":it will copies the directory and its content and paste in destinationDirectory,
+        other options : {
+            -v : will shows what is going on (logs),
+            -f : to accept and force all operations
+        }
+    }
+mv "fileOrDirectoryName" "destinationDirectory":it will move files and directories;
+rm : to remove files and directories
+    {
+        rm "fileName":will remove file,
+        rm -r "directoryName" : will remove directory
+        -f && -v :you know this befor
+    }    
+//**important<->
+(.) is accord to current directory location for example (cp "fileName" .) it will copy file in the same directory that command used;
+to rename file or directory you should use (mv "fileOrDirectoryName" "newFileOrDirectoryName");
+<->**//        
+
+* redirecting the outputs :
+    0:standardInput,
+    1:standardOutPut,
+    2:standardError
+    {
+        command  (standardNumber)> "fileName": with defual value (1>) will redirects (rewrite:will delete last content in file and append the new things) standard output to file ,
+        command (standardNumber)>> "fileName":with defual value (1>) will append output to the last of file ,
+        command > "fileName" 2>&1 : it will redirect all output and errors,
+        command | anotherCommand : it will redirect the output of first command to anotherCommand
+    }    
+//**important<->
+to redirect unimportant errors or things we can use /dev/null and it will not shows in any where
+<->**//
+tar : its for ziping files and dir (read in power points);
+split  (numberOfPartsYouWant) "fileName":it will split your file into seperate files with less size
+    {
+        -n (number): split with number,
+        -b (size): split with sizes
+        -d : will name files better 
+        * to stick the filez toghater again you should use (cat x* > "fileName") it will make the original file again
+    }
+;
+backUp tool : cpio : read powerpoints;
+sort & uniq & shuf : you can read powerpoints;
+replace words : read powerpoints;
+cut : read powerpoints;
+more less most : to show files content better that cat;
+searching directories :
+    {
+        find (location): {
+            -name (name),
+            -type (fileType),
+            -mtine 
+            -atime 
+            -ctime
+            ! (not)
+            -o -> or
+            -size (+size)
+            use functions on files -> : 
+                find (directoryName) -(command) -exec (command on files) {} /(command options optional) \;
+
+        }
+        witch or whereis (command): to find command binary file location
+    }
+vim ->
+modes : {
+    insert mode (press (i) in file),
+    escape mode (press (esc) in file),
+    commad mode (enter (:) + (tab) in file),
+    (linesNumber)dd:deletelines
+}
+command to use in scape mode :{
+    :set nu / :set nonu : to display or dont display line numbers,
+    :w : to save file,
+    :w [fileName] : to save as,
+    :q : quit the editor without saving the file,
+    :q! : quit the editor without saving the file when there was a change (forced),
+    :wq! : save and quit from the editor (forced)
+    
+}
+visual mode (press (v) in file){
+    d : to cut selected words,
+    y : to copy selected words,
+    p : to paste,
+    u : undo
+}
+run shell scripts in vim :{
+    :! (command) : run the command and shows the result,
+    :r! (command) : redirect and print the result in current line of file
+    :(firstLineNum)(lastLineNum)! (command) : print the result in specefic lines
+}
+vimdiff [file1] [file2] : vim -d [file1] [file2] : it will shows the differences bitween the files {
+    :set no/scrollbind : enable or disable scrollbind,
+    ctrl + w : will changes the windows,
+    :diffput OR :diffget : will makes same the differences in same lin
+}
+tab management : read power points XD,
+grep (word) : to find specefic word in file 
