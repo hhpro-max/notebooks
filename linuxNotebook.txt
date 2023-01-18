@@ -177,3 +177,41 @@ vimdiff [file1] [file2] : vim -d [file1] [file2] : it will shows the differences
 }
 tab management : read power points XD,
 grep (word) : to find specefic word in file 
+<-
+add a new user to os ->
+    useradd (-options-) (userName): {
+        -m : creat a file for this user in home directory,
+        -g or --gid (groupId) : *this is primery group and  will add this user to the group with that id if you dont use this option the linux will make a default group with users name and add the user to that default group,
+        -G (groupName) : *this is secondery group 
+        -c (comment) : this will add the comment for user description,
+        -s (shell) : will define a shell for user for example /bin/bash would apply bash shell for user usage (you can assign nologin for this option),
+    }
+users lists are in /etc/passwd;
+<- to delete user ->
+userdel (-options-) (userName) : {
+        -r -f : will force the os to remove the user even if the use is using the shell via ssh
+    }
+user group lists are in /etc/groups
+id (userName) : will shows the info about the userId userGroupId and ...;
+<-modify existing user->
+usermod (-options-) (userName):{
+    -g , -c : you should now what does these commands do,
+    -G (groupName/s) : will over write the groups of the user,
+    -aG (groupName) : will append the group/s to the user groups
+}
+passwd (userName) : to set password for userName;
+finger (userName): will shows the user details;
+chfn (userName) : you can change user infos with this command;
+groups (userName) : you can see the user groups ,
+<-to add group->
+    groupadd -g (groupId) (groupName) ;
+<-to delete group-> 
+    groupdel (groupName):{
+        -f : to force to delete group
+    }
+<-modify existing group->
+    groupmod -g (groupId) -n (newName) (groupName);
+getent (fileName) (word) = cat (fileName) | grep (word);
+chage : use --help to see what can you do (this command is for user password managemnt)
+users password lists are in /etc/shadow;
+        
