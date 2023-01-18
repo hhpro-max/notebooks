@@ -214,4 +214,34 @@ groups (userName) : you can see the user groups ,
 getent (fileName) (word) = cat (fileName) | grep (word);
 chage : use --help to see what can you do (this command is for user password managemnt)
 users password lists are in /etc/shadow;
-        
+for example look at d1[rwx]2{r-x}3[r-x] or -1[rw-]2[r--]3[r--] :  {
+    d : means directory,
+    - : means file,
+    1 : my premissions,
+    2 : my group premissions,
+    3 : other premissions
+}
+chmod [ugoa] [+-] [rwx] (file/dorectoryName): to manage file/directory premissions : {
+    u : user,
+    g : group,
+    o : others,
+    a : all,
+    notice : if you dont use any of above the default value would be (a),
+    *you can use binery numbers instead of rwx
+}        
+stat (fileName): will shows more info about files;
+chown [userName]:[groupName(optional)] (fileName) : will change userOwner and groupOwner;
+chgrp [groupName] (fileName) : will change file groupOwner;
+    {
+        -R : will append on all files in directories
+    };
+umask [number]: (you can see the formula in powerpoints) : to change user default premissions on make directories and files 
+<-special premissions-> execution only
+suid -> its append only on files and file could be executed only by owner
+sgid -> // // // for groups,
+sticky bit -> its on directories and others can put file in this directory but no one but owner can change the content
+chmod [u/g|o]+[s|t] [programName] : will append suid premission on file
+ln [fileName] [hardLinkName] : will make the hardlink on file
+inod : read in powerpoints xd ;
+find . [-samefile|-inum] [fileName|inodNumber] : will find the hardlinks and the same files;
+ln -s [fileName] [shoorcutlinkName] : to make shortcut(symbolic (soft) link)
