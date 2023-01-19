@@ -245,3 +245,43 @@ ln [fileName] [hardLinkName] : will make the hardlink on file
 inod : read in powerpoints xd ;
 find . [-samefile|-inum] [fileName|inodNumber] : will find the hardlinks and the same files;
 ln -s [fileName] [shoorcutlinkName] : to make shortcut(symbolic (soft) link)
+du [-option-] (fileName) : to see info about file (size and etc);
+<-cpu info->
+cat /proc/cpuinfo : to see cpu details;
+lscpu : to see cpu details;
+uptime : to see system infos;
+top : to see info about proccesses(task manager);
+htop : better than top;
+atop : more details than top;
+<-memory info->
+cat /proc/meminfo : memory info
+vmstat [seconds] [proccesses] : shows memory info (every seconds will show top to proccesses);
+free -h: infos about memory human readable;
+to make memory space free ->
+        echo [1(page cashes) 2(inods and etc) 3(for everything)] > /proc/sys/vm/drop_cashes : it will clear up the ram (read more about this in pdf's);
+        
+// watch [-option] \"[command] \" : will shows the changes better;
+<-IO (read and write) info->
+iotop : shows io infos;
+lsof : to controll io;
+<-controlling proccesses->
+    ps [-option]: show proccesses infos {
+        -f : show more info;
+        -ef : shows more info;
+        -u [userName or userId]: to find user proccesses; 
+    };
+    pstree : show the proccesses like tree;
+    kill [-signalNumber] [proccessId] : endtask;
+    killall [proccessId] : will kill parents and childs;
+<-push proccesses to backGround->
+[command] & : will proc the proccesses in background and makes the terminal free for you to use ;
+jobs : will shows all proccesses that are running in background of terminal;
+fg %[numberOfProcess] : bring the proccess to foreground;
+bg %[numberOfProcess] : push // // // backGround;
+kill %[numberOfProcess] : kill the proccess;
+ctrl + z :will susspend (stop) the progrom in foreground and push it to backGround (to run in again in backGround use bg %[numberOfProcess] command)
+nohup [command]: the progress will not intrupped after closing the session (by default when you close the terminal or a session the jobs will just intrupped and getting killed by hup signal);
+//* to check nohup proccesses use (ps -ef | grep nohup) 
+//*to check nohup proccesses output check the directory that you used this command in then you should find nohup.out file
+tail [-options] [fileName] : will shows the latest line of file and will update it in real time
+head [-option] [fileName] : reverse of tail;
