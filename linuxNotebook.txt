@@ -285,3 +285,10 @@ nohup [command]: the progress will not intrupped after closing the session (by d
 //*to check nohup proccesses output check the directory that you used this command in then you should find nohup.out file
 tail [-options] [fileName] : will shows the latest line of file and will update it in real time
 head [-option] [fileName] : reverse of tail;
+systemctl [-options-] (serviceName) : will chamges the service status{
+        enable/disable : the service will start or stop on boot time,
+        status : will shows the status of service,
+        stop/start/restart/reload : thats easy XD,
+        for more read power points
+        
+}
